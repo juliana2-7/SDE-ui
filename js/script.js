@@ -175,3 +175,105 @@ function carregarDashboard() {
         // window.location.href = 'nova-atividade.html';
     });
 }
+// ===== TELA DE AGENDA =====
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementById('btnVoltarAgenda')) {
+        carregarAgenda();
+    }
+});
+
+function carregarAgenda() {
+    // Botão Voltar para o Dashboard
+    document.getElementById('btnVoltarAgenda').addEventListener('click', function () {
+        window.location.href = 'dashboard.html';
+    });
+
+    // 1. Calcular a semana atual (segunda a sexta)
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = domingo
+    const diffSegunda = (diaSemana === 0 ? 6 : diaSemana - 1); // ajuste para segunda
+    const segunda = new Date(hoje);
+    segunda.setDate(hoje.getDate() - diffSegunda);
+
+    // Preencher título da semana
+    const dataInicio = segunda.toLocaleDateString('pt-BR');
+    const dataFim = new Date(segunda);
+    dataFim.setDate(segunda.getDate() + 4);
+    document.getElementById('semanaTitulo').textContent = 
+        `Semana de ${dataInicio} a ${dataFim.toLocaleDateString('pt-BR')}`;
+
+    // 2. Preencher os dias (Segunda a Sexta)
+    const dias = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
+    const idsDatas = ['dataSeg', 'dataTer', 'dataQua', 'dataQui', 'dataSex'];
+    const idsAtividades = ['atividadesSeg', 'atividadesTer', 'atividadesQua', 'atividadesQui', 'atividadesSex'];
+
+    for (let i = 0; i < 5; i++) {
+        const diaAtual = new Date(segunda);
+        diaAtual.setDate(segunda.getDate() + i);
+        const dataFormatada = diaAtual.getDate().toString().padStart(2, '0');
+        document.getElementById(idsDatas[i]).textContent = dataFormatada;
+
+        // Exemplo de atividades (futuramente virá do localStorage)
+        const lista = document.getElementById(idsAtividades[i]);
+        // Simula algumas atividades para demonstração
+        const atividadesExemplo = {
+            'Seg': ['Matemática - Prova'],
+            'Ter': ['Ciências - Trabalho'],
+            'Qua': [],
+            'Qui': ['História - Prova'],
+            'Sex': ['Português - Tarefa']
+        };
+        const atividadesDoDia = atividadesExemplo[dias[i]] || [];
+        lista.innerHTML = '';
+        if (atividadesDoDia.length === 0) {
+            const li = document.createElement('li');
+            li.className = 'sem-atividade';
+            li.textContent = '---';
+            lista.appendChild(li);
+        } else {
+            atividadesDoDia.forEach(ativ => {
+                const li = document.createElement('li');
+                li.textContent = ativ;
+                lista.appendChild(li);
+            });
+        }
+    }
+
+    // 3. Próximos 7 dias (resumo)
+    const listaProximos = document.getElementById('listaProximosDias');
+    // Exemplo fixo
+    const proximos = [
+        '15/09 - Matemática (Prova)',
+        '17/09 - Ciências (Trabalho)',
+        '18/09 - História (Prova)'
+    ];
+    listaProximos.innerHTML = '';
+    if (proximos.length > 0) {
+        proximos.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            listaProximos.appendChild(li);
+        });
+    } else {
+        listaProximos.innerHTML = '<li>Nenhuma atividade nos próximos dias.</li>';
+    }
+}
+// ===== TELA DE AGENDA =====
+document.addEventListener('DOMContentLoaded', function () {
+    // Botão Voltar para o Dashboard
+    const btnVoltar = document.getElementById('btnVoltar');
+    if (btnVoltar) {
+        btnVoltar.addEventListener('click', function () {
+            window.location.href = 'dashboard.html';
+        });
+    }
+});
+// ===== TELA DE AGENDA =====
+document.addEventListener('DOMContentLoaded', function () {
+    const btnVoltar = document.getElementById('btnVoltar');
+    if (btnVoltar) {
+        btnVoltar.addEventListener('click', function () {
+            window.location.href = 'dashboard.html';
+        });
+    }
+});
