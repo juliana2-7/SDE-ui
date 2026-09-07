@@ -137,3 +137,148 @@ select:focus {
 .btn-cadastrar:hover {
     background-color: #059669;
 }
+/* ===== TELA DE DASHBOARD ===== */
+.container-dashboard {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+}
+
+.saudacao {
+    font-size: 1.3rem;
+    color: #1e293b;
+}
+
+.data-atual {
+    font-size: 0.9rem;
+    color: #64748b;
+    display: block;
+}
+
+.btn-sair {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-sair:hover {
+    background-color: #dc2626;
+}
+
+/* Calendário Resumido */
+.calendario-resumo {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+}
+
+.calendario-resumo h2 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 12px;
+}
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.dias-mes {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 4px;
+}
+
+.dias-mes span {
+    padding: 6px 0;
+    border-radius: 6px;
+    background-color: #f1f5f9;
+    font-size: 0.9rem;
+}
+
+.dias-mes .hoje {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 700;
+}
+
+/* Provas e Metas */
+.provas-semana, .metas-estudo {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 16px;
+}
+
+.provas-semana h2, .metas-estudo h2 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.provas-semana ul, .metas-estudo ul {
+    list-style: none;
+    padding: 0;
+}
+
+.provas-semana li, .metas-estudo li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+}
+
+.provas-semana li:last-child, .metas-estudo li:last-child {
+    border-bottom: none;
+}
+
+/* Botão Nova Atividade */
+.botao-nova-atividade {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-nova-atividade {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+}
+
+.btn-nova-atividade:hover {
+    background-color: #1e4a8a;
+}

@@ -76,3 +76,102 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+// ===== TELA DE DASHBOARD =====
+// ===== TELA DE DASHBOARD =====
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica se o elemento que só existe no dashboard está presente
+    if (document.getElementById('nomeUsuario')) {
+        carregarDashboard();
+    }
+});
+
+function carregarDashboard() {
+    // 1. Nome do usuário (pegando do localStorage)
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    // Simula o usuário logado (o primeiro da lista, para teste)
+    const usuarioLogado = usuarios.length > 0 ? usuarios[0] : null;
+    if (usuarioLogado) {
+        document.getElementById('nomeUsuario').textContent = usuarioLogado.nome;
+    } else {
+        // Se não houver usuário, redireciona para login
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // 2. Data atual
+    const hoje = new Date();
+    const opcoes = { day: '2-digit', month: 'long', year: 'numeric' };
+    document.getElementById('dataAtual').textContent = hoje.toLocaleDateString('pt-BR', opcoes);
+
+    // 3. Calendário resumido (mês atual)
+    const mesAno = hoje.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+    document.getElementById('mesAno').textContent = mesAno.charAt(0).toUpperCase() + mesAno.slice(1);
+
+    const primeiroDia = new Date(hoje.getFullYear(), hoje.getMonth(), 1).getDay();
+    const ultimoDia = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+    const hojeNum = hoje.getDate();
+
+    const containerDias = document.getElementById('diasMes');
+    containerDias.innerHTML = '';
+
+    // Preenche os dias vazios antes do primeiro dia
+    for (let i = 0; i < primeiroDia; i++) {
+        const span = document.createElement('span');
+        span.textContent = '';
+        containerDias.appendChild(span);
+    }
+
+    // Preenche os dias do mês
+    for (let d = 1; d <= ultimoDia; d++) {
+        const span = document.createElement('span');
+        span.textContent = d;
+        if (d === hojeNum) {
+            span.classList.add('hoje');
+        }
+        containerDias.appendChild(span);
+    }
+
+    // 4. Provas da semana (exemplo fixo – depois integra com localStorage)
+    const listaProvas = document.getElementById('listaProvas');
+    const provas = [
+        { disciplina: 'Matemática', data: '15/09', descricao: 'Prova Bimestral' },
+        { disciplina: 'Ciências', data: '17/09', descricao: 'Trabalho em grupo' },
+    ];
+    listaProvas.innerHTML = '';
+    if (provas.length > 0) {
+        provas.forEach(p => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${p.disciplina}</strong> - ${p.data} (${p.descricao})`;
+            listaProvas.appendChild(li);
+        });
+    } else {
+        listaProvas.innerHTML = '<li>Nenhuma prova cadastrada esta semana.</li>';
+    }
+
+    // 5. Metas de estudo (exemplo fixo)
+    const listaMetas = document.getElementById('listaMetas');
+    const metas = [
+        { titulo: 'Revisar capítulo 5', progresso: '40%' }
+    ];
+    listaMetas.innerHTML = '';
+    if (metas.length > 0) {
+        metas.forEach(m => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${m.titulo}</strong> - Progresso: ${m.progresso}`;
+            listaMetas.appendChild(li);
+        });
+    } else {
+        listaMetas.innerHTML = '<li>Nenhuma meta definida.</li>';
+    }
+
+    // 6. Botão Sair
+    document.getElementById('btnSair').addEventListener('click', function () {
+        window.location.href = 'index.html';
+    });
+
+    // 7. Botão Nova Atividade
+    document.getElementById('btnNovaAtividade').addEventListener('click', function () {
+        alert('Em breve você poderá cadastrar novas atividades!');
+        // window.location.href = 'nova-atividade.html';
+    });
+}
