@@ -532,3 +532,83 @@ select:focus {
 .proximos-dias li:last-child {
     border-bottom: none;
 }
+/* ===== BOTÃO VER AGENDA ===== */
+.btn-ver-agenda {
+    display: block;
+    text-align: center;
+    background-color: #e0e7ff;
+    color: #1e3a8a;
+    padding: 12px;
+    margin-top: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-ver-agenda:hover {
+    background-color: #c7d2fe;
+}
+/* ===== MELHORIAS NA TELA DE AGENDA ===== */
+
+/* 1. Diminuir a largura no computador para não ficar esticado */
+.container-agenda {
+    max-width: 700px; /* Diminuído de 900 para 700 */
+    margin: 20px auto; /* Centraliza na tela */
+    padding: 20px;
+}
+
+/* 2. Estilo para Celular (Responsividade) */
+@media (max-width: 768px) {
+    /* Empilha os dias da semana um embaixo do outro no celular */
+    .dias-semana-agenda {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* Deixa o dia e o evento um do lado do outro dentro do cartão */
+    .dia {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding: 10px 15px;
+    }
+
+    .dia h3 {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        font-size: 1rem;
+    }
+
+    /* Ajusta o cabeçalho para telas pequenas */
+    .header-agenda {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .btn-voltar {
+        width: 100%;
+    }
+}
+.btn-voltar {
+    display: inline-block;
+    background-color: #64748b;
+    color: white !important; /* Força o texto a ser branco */
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none; /* REMOVE O SUBLINHADO */
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.btn-voltar:hover {
+    background-color: #475569;
+    color: white !important;
+}

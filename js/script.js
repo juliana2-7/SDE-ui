@@ -70,3 +70,44 @@ if (formLogin) {
         }
     });
 }
+// ===== TELA DE DASHBOARD =====
+const nomeUsuarioElement = document.getElementById('nomeUsuario');
+
+// Verifica se estamos na página do Dashboard
+if (nomeUsuarioElement) {
+    // 1. Mostrar o nome do usuário
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+    if (!usuarioLogado) {
+        alert('Você precisa fazer login para acessar esta página.');
+        window.location.href = 'index.html';
+    } else {
+        // Muda o "Aluno(a)" pelo nome real
+        nomeUsuarioElement.textContent = usuarioLogado.nome;
+    }
+
+    // 2. Lógica do botão Sair
+    const btnSair = document.getElementById('btnSair');
+    if (btnSair) {
+        btnSair.addEventListener('click', () => {
+            localStorage.removeItem('usuarioLogado'); // Limpa os dados de login
+            window.location.href = 'index.html'; // Volta para a tela de login
+        });
+    }
+
+    // 3. Lógica do botão Nova Atividade
+    const btnNovaAtividade = document.getElementById('btnNovaAtividade');
+    if (btnNovaAtividade) {
+        btnNovaAtividade.addEventListener('click', () => {
+            alert('Tela de Nova Atividade será implementada na próxima entrega! 😉');
+        });
+    }
+}
+// Botão esqueceu a senha
+const btnEsqueceu = document.querySelector('.esqueceu');
+if (btnEsqueceu) {
+    btnEsqueceu.addEventListener('click', (e) => {
+        e.preventDefault(); // Impede de recarregar a página
+        alert('A recuperação de senha será implementada em uma versão futura!');
+    });
+}
